@@ -9,56 +9,109 @@
 
 ## Русский
 
-**Oasis AI** — умная автоматизированная система ухода за растениями на базе IoT и искусственного интеллекта. Проект представляет собой комплекс из аппаратной части (микроконтроллер ESP32, датчики, реле) и кроссплатформенного мобильного приложения, разработанного на Flutter.
+**Oasis AI** — умная система автоматического ухода за растениями на базе IoT и искусственного интеллекта. Проект представляет собой комплекс из смарт-теплицы и кроссплатформенного приложения.
 
-Система способна самостоятельно отслеживать состояние микроклимата, управлять поливом и освещением, а интегрированная нейросетевая модель анализирует входящие показатели и генерирует индивидуальные рекомендации и оптимальные планы ухода для любого типа растений.
+Интеллектуальная система автоматизированного ухода за растениями работает на базе микроконтроллера ESP32, мобильного приложения на Flutter и интеграции с искусственным интеллектом через OpenRouter API.
 
-### Основные функции
-* **Интеллектуальный генератор планов**: Нейросеть (через OpenRouter API) подбирает частоту полива, объём воды, нормы освещения (в люксах), влажности и температуры под конкретный вид растения.
-* **Автоматическое управление**: Удалённое включение/выключение УФ-лампы, водяной помпы и вентиляции на основе данных от датчиков в реальном времени.
-* **Мониторинг параметров**: Сбор и отображение ключевых показателей (влажность почвы, температура воздуха, уровень освещённости).
-* **Синхронизация с облаком**: Мгновенный обмен данными между аппаратной станцией и мобильным интерфейсом через Firebase Realtime Database.
-* **Премиальный UI/UX**: Тёмная неоновая тема оформления с размытием (Glassmorphism), плавными анимациями и кастомными графиками мониторинга.
+### Архитектура системы
+[ Датчики: влажность, темп., свет ]
+│
+▼
+[ Интерфейс платы ESP32 ] <─── (Реле / Помпа / Линии питания)
+│
+▼
+Firebase Realtime DB 🧠
+│
+▼
+[ Flutter App ] ──> OpenRouter API (ИИ) ──> Персональный план ухода
+### Что уже в планах и разработке
 
-### Технологический стек
-* **Mobile App**: Flutter, Dart, Firebase Core, Firebase Database, Google Fonts, Flutter Animate
-* **Backend/AI**: OpenRouter API (модели автоматического выбора), Firebase Realtime Database
-* **Hardware**: C++, ESP32, датчики влажности почвы (емкостные), датчики температуры/влажности воздуха (DHT), датчики освещённости (BH1750), реле управления.
+* 📊 **Мониторинг:** Получение данных о влажности почвы, температуре воздуха и освещённости с датчиков ESP32 в реальном времени.
+* 🤖 **ИИ-аналитика:** Интеграция с нейросетью через OpenRouter API для генерации индивидуальных планов ухода под каждый вид растения.
+* 💧 **Автополив:** Автоматическая подача воды помпой при падении уровня влажности ниже критического.
+* 💡 **Умный свет:** ИИ-управление УФ-лампой для продления светового дня растений.
+* 📋 **История событий:** Логирование ключевых показателей теплицы и действий системы в базу данных Firebase.
 
 ---
 
-### Интерфейс приложения / Application Screenshots
+## 📱 Интерфейс приложения
+
+### Основной экран и генерация планов ухода
+Приложение позволяет автоматически создавать индивидуальные протоколы заботы для любого типа растений (например, для орхидей или микрозелени) с помощью нейросети.
 
 <p align="center">
-  <img src="Screenshot_20260602_213809_com.yandex.searchapp.android.cl.png" width="24%" alt="Мониторинг состояния"/>
-  <img src="Screenshot_20260602_213824_com.yandex.searchapp.android.cl.png" width="24%" alt="Генератор планов ухода"/>
-  <img src="Screenshot_20260602_213829_com.yandex.searchapp.android.cl.png" width="24%" alt="История показателей"/>
-  <img src="Screenshot_20260602_213849_com.yandex.searchapp.android.cl.png" width="24%" alt="Интеграция с нейросетью"/>
+  <img src="Screenshot_20260602_213824_com.yandex.searchapp_edit_19530319706394.jpg" width="30%" alt="Генератор планов ухода" />
+  <img src="Screenshot_20260602_213849_com.yandex.searchapp_edit_19568041870451.jpg" width="30%" alt="План для орхидеи" />
+  <img src="Screenshot_20260602_213935_com.yandex.searchapp_edit_19607895599611.jpg" width="30%" alt="План для микрозелени" />
 </p>
 
+### Активный мониторинг и датчики
+Экран отслеживания в реальном времени собирает данные с сенсоров (влажность, температура, освещенность) и управляет состоянием периферии (УФ-лампы, автополив).
+
 <p align="center">
-  <img src="Screenshot_20260602_213906_com.yandex.searchapp.android.cl.png" width="24%" alt="Панель датчиков"/>
-  <img src="Screenshot_20260602_213911_com.yandex.searchapp.android.cl.png" width="24%" alt="Активация режима автополива"/>
-  <img src="Screenshot_20260602_213935_com.yandex.searchapp.android.cl.png" width="24%" alt="Графики климата"/>
-  <img src="Screenshot_20260602_213945_com.yandex.searchapp.android.cl.png" width="24%" alt="Настройки системы"/>
+  <img src="Screenshot_20260602_213906_com.yandex.searchapp_edit_19580067123053.jpg" width="30%" alt="Мониторинг орхидеи" />
+  <img src="Screenshot_20260602_213945_com.yandex.searchapp_edit_19618506602735.jpg" width="30%" alt="Мониторинг микрозелени" />
+  <img src="Screenshot_20260602_213911_com.yandex.searchapp_edit_19591933092322.jpg" width="30%" alt="Показания датчиков" />
 </p>
+
+### История событий
+Журнал логирует все действия станции: автоматические сессии полива, включение освещения по таймеру AI и критические уведомления об отклонении показателей от нормы.
+
+<p align="center">
+  <img src="Screenshot_20260602_213829_com.yandex.searchapp_edit_19545305203787.jpg" width="45%" alt="История событий" />
+</p>
+
+---
+
+## 🛠 Технологический стек / Tech Stack
+
+### Подробный состав компонентов
+* **Hardware:** ESP32, датчики влажности почвы, датчик освещенности (BH1750), датчик температуры и влажности воздуха (DHT22), реле управления помпой и УФ-лампой.
+* **Mobile & Web:** Flutter, Dart, Firebase (Firestore, Realtime Database, Authentication, Hosting).
+* **AI Integration:** OpenRouter API для кастомного анализа состояния экосистемы.
+
+### Спецификация слоев
+
+| Слой | Технологии |
+| :--- | :--- |
+| **Мобильное приложение** | Flutter, Dart |
+| **Микроконтроллер** | ESP32 |
+| **База данных / Облако** | Firebase Realtime Database, Cloud Services, Hosting |
+| **Интеграция с ИИ** | OpenRouter API (LLM модели) |
 
 ---
 
 ## English
 
-**Oasis AI** is an intelligent automated plant care and greenhouse management system powered by IoT and Artificial Intelligence. The project combines a hardware station (ESP32 microcontroller, sensors, relays) with a cross-platform mobile application built using Flutter.
+**Oasis AI** is an intelligent, automated smart greenhouse system powered by IoT hardware and Artificial Intelligence. The project seamlessly combines a hardware monitoring station with a cross-platform mobile application to deliver precision agriculture for indoor plants.
 
-The system monitors microclimate conditions, controls irrigation and lighting, and utilizes an integrated AI model to analyze sensor data, providing tailored care recommendations and optimal growth plans for any plant species.
+The ecosystem utilizes an ESP32 microcontroller to gather environmental metrics, routes them through Firebase cloud services, and leverages advanced LLMs via OpenRouter API to build tailor-made cultivation strategies.
 
-### Key Features
-* **AI Care Plan Generator**: Generates customized care schedules (watering times, water volume, UV lamp duration, and ideal ranges for moisture, temperature, and lux) via the OpenRouter API.
-* **Automated Control**: Real-time automated and manual control over UV lighting, water pumps, and ventilation systems based on environmental factors.
-* **Live Telemetry & Monitoring**: Tracks soil moisture, air temperature, and ambient light levels using high-precision hardware sensors.
-* **Cloud Infrastructure**: Seamless, low-latency synchronization between the physical hardware and mobile application leveraging Firebase Realtime Database.
-* **Premium UI/UX Design**: Sleek dark-mode aesthetic featuring high-end glassmorphic containers, fluid structural animations, and responsive dynamic charts.
+### System Architecture
 
-### Tech Stack
-* **Mobile App**: Flutter, Dart, Firebase Core, Firebase Database, Google Fonts, Flutter Animate
-* **Backend/AI**: OpenRouter API (automated model routing), Firebase Realtime Database
-* **Hardware Ecosystem**: C++, ESP32 MCU, capacitive soil moisture sensors, DHT air climate sensors, BH1750 digital light sensors, multi-channel relay modules.
+[ Sensors: Moisture, Temp, Light ]
+│
+▼
+[ ESP32 Microcontroller ] <─── (Relays / Water Pump / UV Lights)
+│
+▼
+Firebase Realtime DB 🧠
+│
+▼
+[ Flutter App ] ──> OpenRouter API (LLM) ──> Customized Care Plan
+
+
+### Core Features & Roadmap
+
+* 📊 **Real-Time Dashboard:** Streaming live soil moisture, ambient temperature, and light levels directly from the greenhouse sensors.
+* 🤖 **AI-Driven Agronomy:** Integrating with LLMs via OpenRouter API to generate specialized, species-specific growth and care plans.
+* 💧 **Automated Irrigation:** Smart threshold management that triggers the water pump when moisture drops below unsafe levels.
+* 💡 **Intelligent Lighting:** Automated UV lamp cycles designed by AI to optimize and extend the daylight duration for specific crops.
+* 📋 **Station Event Logging:** Saving comprehensive history tracking, data trends, and automatic actions into Firebase Realtime Database.
+
+### Hardware & Software Technical Breakdown
+
+* **Hardware Layer:** ESP32 board, capacitive soil moisture sensors, BH1750 ambient light sensors, DHT22/DHT11 temperature and humidity sensors, and multi-channel relay modules for driving pumps and UV grow lamps.
+* **Mobile & Frontend:** Flutter framework and Dart language providing responsive, beautiful, dark-themed Android, iOS, and Web layouts.
+* **Cloud Infrastructure:** Firebase Realtime Database for instant state synchronization, Firebase Authentication for user security, and Firebase Hosting for web deployments.
+* **AI Engine:** OpenRouter API abstraction layer for processing plant conditions and translating text recommendations into structured hardware parameters.
