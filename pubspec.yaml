@@ -1,0 +1,50 @@
+name: oasis_ai
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+# Dependencies specify other packages that your package needs in order to work.
+# Dependencies specify other packages that your package needs in order to work.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Бэкенд, база данных и сетевые запросы
+  firebase_core: ^3.15.2
+  firebase_database: ^11.1.1
+  http: ^1.2.1
+  google_generative_ai: ^0.4.1
+
+  # UI-пакеты для дизайна, эффектов и анимаций Ксюши
+  glassmorphism: ^3.0.0
+  animated_text_kit: ^4.2.2
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.2.1
+  lottie: ^3.1.2
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# Специфичные настройки для Flutter
+flutter:
+  # Включение Material дизайна
+  uses-material-design: true
+
+  # Подключение папок с графикой от Вари
+  assets:
+    - assets/plants/
+    - assets/icons/
+    - assets/backgrounds/
+    - assets/animations/
