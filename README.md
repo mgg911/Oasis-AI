@@ -83,18 +83,35 @@ Firebase Realtime DB 🧠
 
 ## English
 
-**Oasis AI** is an automated smart greenhouse system powered by IoT and Artificial Intelligence. 
+**Oasis AI** is an intelligent, automated smart greenhouse system powered by IoT hardware and Artificial Intelligence. The project seamlessly combines a hardware monitoring station with a cross-platform mobile application to deliver precision agriculture for indoor plants.
 
-### Core Features
+The ecosystem utilizes an ESP32 microcontroller to gather environmental metrics, routes them through Firebase cloud services, and leverages advanced LLMs via OpenRouter API to build tailor-made cultivation strategies.
 
-* 📊 **Real-time Monitoring:** Tracking soil moisture, ambient temperature, and light levels via ESP32.
-* 🤖 **AI Care Plans:** Generating customized plant growth schedules using LLMs via OpenRouter API.
-* 💧 **Smart Irrigation:** Automated water pump triggering based on live sensor thresholds.
-* 📋 **Data Logging:** Saving sensor history and automated actions inside Firebase Realtime Database.
+### System Architecture
+[ Sensors: Moisture, Temp, Light ]
+│
+▼
+[ ESP32 Microcontroller ] <─── (Relays / Water Pump / UV Lights)
+│
+▼
+Firebase Realtime DB 🧠
+│
+▼
+[ Flutter App ] ──> OpenRouter API (LLM) ──> Customized Care Plan
 
-### Architecture Layer
+### Core Features & Roadmap
 
-* **Frontend:** Flutter & Dart (iOS/Android)
-* **Hardware:** ESP32 & IoT Sensors
-* **Backend:** Firebase Cloud Services (Realtime DB, Auth, Hosting)
-* **AI Engine:** OpenRouter API (LLM Integration)
+* 📊 **Real-Time Dashboard:** Streaming live soil moisture, ambient temperature, and light levels directly from the greenhouse sensors.
+* 🤖 **AI-Driven Agronomy:** Integrating with LLMs via OpenRouter API to generate specialized, species-specific growth and care plans.
+* 💧 **Automated Irrigation:** Smart threshold management that triggers the water pump when moisture drops below unsafe levels.
+* 💡 **Intelligent Lighting:** Automated UV lamp cycles designed by AI to optimize and extend the daylight duration for specific crops.
+* 📋 **Station Event Logging:** Saving comprehensive history tracking, data trends, and automatic actions into Firebase Realtime Database.
+
+### Hardware & Software Technical Breakdown
+
+* **Hardware Layer:** ESP32 board, capacitive soil moisture sensors, BH1750 ambient light sensors, DHT22/DHT11 temperature and humidity sensors, and multi-channel relay modules for driving pumps and UV grow lamps.
+* **Mobile & Frontend:** Flutter framework and Dart language providing responsive, beautiful, dark-themed Android, iOS, and Web layouts.
+* **Cloud Infrastructure:** Firebase Realtime Database for instant state synchronization, Firebase Authentication for user security, and Firebase Hosting for web deployments.
+* **AI Engine:** OpenRouter API abstraction layer for processing plant conditions and translating text recommendations into structured hardware parameters.
+
+
